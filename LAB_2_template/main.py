@@ -93,7 +93,8 @@ class Game:
                     # 卸载所有模块
                     pygame.quit()
                     sys.exit()
-                   
+ #*********************************************** New Code *****************************************************************************
+ # self.x and self.y add in initial function, meaning enemy water0 location(x,y)
                 velocity = 12
                 #判斷有無走路
                 if event.type == pygame.KEYDOWN:
@@ -109,6 +110,7 @@ class Game:
                     # 如果按下按鈕是向下箭頭鍵，則增加 y 坐標
                     if event.key == pygame.K_DOWN:
                         self.y += velocity
+  #*********************************************** New Code *******************************************************************************
             # 更新遊戲
             self.update()
 
