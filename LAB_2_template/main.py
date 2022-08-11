@@ -23,10 +23,27 @@ background_image = pygame.transform.scale(pygame.image.load("image/background.pn
 # ...(to be done)
 
 
-# set the title
-# ---第一題---
-# My First Game
+#set the title
 start_time = pygame.time.get_ticks() # game begining time use to count game time
+
+
+#*********************************************** New Code *************************************************************
+pygame.mixer.init() #初始化混合器
+
+# This method is for background music *********************************************************************************
+# Only_in_sleep = pygame.mixer.music.load("A2_Only_in_Sleep.mp3") # 載入音樂
+# South = pygame.mixer.music.load("south.mp3")
+# pygame.mixer.music.set_volume(0.2)# 設置音量爲 0.2
+# pygame.mixer.music.play() # 播放音樂
+
+# This method is for sound effect music *********************************************************************************
+Only_in_sleep = pygame.mixer.Sound("A2_Only_in_Sleep.mp3")
+Only_in_sleep.set_volume(0.2) 
+South = pygame.mixer.Sound("south.mp3")
+South.set_volume(0.2)
+
+#*********************************************** New Code *************************************************************
+
 
 class Game:
     def __init__(self):
@@ -110,6 +127,19 @@ class Game:
                     # 如果按下按鈕是向下箭頭鍵，則增加 y 坐標
                     if event.key == pygame.K_DOWN:
                         self.y += velocity
+             # Play Music by click mouse
+                  if event.type == pygame.MOUSEBUTTONDOWN:
+                    # button(1：左鍵；2：中間鍵；3：右鍵)
+                    if event.button == 1: #表示點擊鼠標左鍵
+                        pygame.mixer.init()
+                        pygame.mixer.music.load("A2_Only_in_Sleep.mp3") # 讀音樂
+                        if pygame.mixer.get_busy != 1: # 檢查是不是有音樂在放
+                            pygame.mixer.music.play() # 放音樂
+                    if event.button == 3: # 表示點擊鼠標右鍵
+                        pygame.mixer.init()
+                        pygame.mixer.music.load("south.mp3")
+                        if pygame.mixer.get_busy != 1:
+                            pygame.mixer.music.play()
   #*********************************************** New Code *******************************************************************************
             # 更新遊戲
             self.update()
